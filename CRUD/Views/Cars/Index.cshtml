@@ -1,0 +1,31 @@
+﻿@model IEnumerable<CRUD.Models.Car>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Cars</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="row row-cols-1 row-cols-md-3">
+@foreach (var item in Model) {
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Model)</h5>
+                    @if (item.Brand != null)
+                        @Html.DisplayFor(modelItem => item.Brand.Name)<br>
+                    @if (item.FuelType != null)
+                        @Html.DisplayFor(modelItem => item.FuelType.Name)<br>
+                    @Html.DisplayFor(modelItem => item.Color)<br>
+                    @Html.DisplayFor(modelItem => item.Mileage)<br>
+                    @Html.DisplayFor(modelItem => item.ManufacturingDate)<br>
+                    @Html.DisplayFor(modelItem => item.Price)$<br>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </div>
+        </div>
+    </div>
+}
+</div>
